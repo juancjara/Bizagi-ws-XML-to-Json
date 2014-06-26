@@ -8,7 +8,7 @@ Quick explanation:
 - EA = External app
 - M = middleware
 - B = bizagi soa
-  
+
 
   EA request(json)   ===== 1 ====>    M   json -> xml     ====== 2 ======>   B  request(xml)
 
