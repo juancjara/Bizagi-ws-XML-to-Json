@@ -21,6 +21,8 @@ exports.consumeWorkFlowBizagi = function ( payload ) {
 exports.consumeGetEntities = function( payload ){
     var response;
     GetEntities( payload , function(error ,result) {
+        console.log("error",error);
+        console.log("result",result);
         result = JSON.parse(result);
         response = formatter.format(payload.methodName,result)
         //console.log("gg",result.BizAgiWSResponse.Entities);
