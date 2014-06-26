@@ -11,3 +11,4 @@ Available web services:
   - getEntities
 
 
+Contact me if you want a user guide or more web services.
