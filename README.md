@@ -1,4 +1,13 @@
 Bizagi-ws-XML-to-Json
 =====================
 
-Consume Bizagi WS using Json instead of XML
+Nodejs server which acts as a middleware converting bizagi's web service data exposed in xml format to json format.
+
+Available web services:
+
+  - getActivities
+  - createCases
+  - performActivity
+  - getEntities
+
+
