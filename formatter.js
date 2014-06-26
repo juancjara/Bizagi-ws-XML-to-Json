@@ -36,12 +36,12 @@ formatters['createCases'] = function ( data ){
 			"errorCode"		: process.processError.errorCode || 0,
 			"errorMessage"	: process.processError.errorMessage || ""
 		};
-		if ( response.errorMessage.length == 0 ){
-			response['taskId'] = process.CurrentWorkItems.workItem.task.taskId;
-			response['taskName'] = process.CurrentWorkItems.workItem.task.taskName;
-			response['processId'] = process.processId;
-			response['processName'] = process.processWorkflowClass.workflowClassName;
-		}
+	if ( response.errorMessage.length == 0 ){
+		response['taskId'] = process.CurrentWorkItems.workItem.task.taskId;
+		response['taskName'] = process.CurrentWorkItems.workItem.task.taskName;
+		response['processId'] = process.processId;
+		response['processName'] = process.processWorkflowClass.workflowClassName;
+	}
 	return response;
 };
 
@@ -70,6 +70,11 @@ formatters['performActivity'] = function ( data ){
 	}
 
 	return response;
+};
+
+formatters['getEntities'] = function( data ){
+	var entities = data.BizAgiWSResponse.Entities;
+	return entities;
 };
 
 exports.format = function( methodName , data ){

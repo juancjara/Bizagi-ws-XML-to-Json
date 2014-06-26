@@ -3,7 +3,12 @@ var WorkFlowBizagi = require('edge').func({
         typeName: 'BizagiWSDLL.Startup',
         methodName: 'ConsumeWorkFlow' 
 	}),
-	formatter = require('./formatter.js');
+	formatter = require('./formatter.js'),
+    GetEntities = require('edge').func({
+        assemblyFile: 'BizagiWSDLL.dll',
+        typeName: 'BizagiWSDLL.Startup',
+        methodName: 'getEntities' 
+    });
 
 exports.consumeWorkFlowBizagi = function ( payload ) {
 	var response;
@@ -12,6 +17,15 @@ exports.consumeWorkFlowBizagi = function ( payload ) {
 		response = formatter.format( payload.methodName , result );
 	});
 	return response;
+};
+exports.consumeGetEntities = function( payload ){
+    var response;
+    GetEntities( payload , function(error ,result) {
+        result = JSON.parse(result);
+        response = formatter.format(payload.methodName,result)
+        //console.log("gg",result.BizAgiWSResponse.Entities);
+    });
+    return response;
 };
 /*
 {
@@ -66,6 +80,20 @@ para idCase se puede omitir los "" o no
                 "Filters" : {
     
                 }
+            }
+        }
+    }
+}
+*/
+
+/*
+{
+    "methodName": "getEntities",
+    "data": {
+        "BizAgiWSParam": {
+            "EntityData" : {
+                "EntityName" : "Comun",
+                "Filters" : "tipoProceso != '4'"
             }
         }
     }
