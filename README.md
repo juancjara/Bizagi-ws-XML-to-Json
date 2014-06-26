@@ -1,7 +1,7 @@
 Bizagi-ws-XML-to-Json
 =====================
 
-Nodejs server which acts as a middleware converting bizagi's web service data exposed in xml format to json format.
+Nodejs server which acts as a middleware converting bizagi's web service exposed data in xml format to json format.
 
 Available web services:
 
