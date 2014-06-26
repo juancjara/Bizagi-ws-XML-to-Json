@@ -5,9 +5,14 @@ Nodejs server which acts as a middleware converting bizagi's web service exposed
 
 Quick explanation:
 
-  Extern App                            Middleware                            Bizagi SOA
-  request(json)   ===== 1 ====>       json -> xml     ====== 2 ======>        request(xml)
-  response(json)  <==== 4 ====        json <- xml     <===== 3 =======       reponse(xml)
+- EA = External app
+- M = middleware
+- B = bizagi soa
+  
+
+  EA request(json)   ===== 1 ====>    M   json -> xml     ====== 2 ======>   B  request(xml)
+
+  EA response(json)  <==== 4 ====     M   json <- xml     <===== 3 =======   B  reponse(xml)
 
 
 Available web services:
