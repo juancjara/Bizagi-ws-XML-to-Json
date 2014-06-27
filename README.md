@@ -24,3 +24,8 @@ Available web services:
 
 
 Contact me if you want a user guide or more web services.
+
+Servidor de Bizagi xml to Json
+===================
+
+Este servidor permite consumir los servicios web de bizagi usando json y obtener la respuesta de bizagi a través de un json. El json se transforma a xml por este middleware para ser enviado a Bizagi SOA , luego la respuesta en xml se obtiene y se transforma a Json.
