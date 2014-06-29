@@ -9,10 +9,22 @@ var formatters = {};
         }
     },
     "requiredInfo": [
-		{"name":"processId","path":"process.processId","default":0}
+    	{"name":"processName","path":"process.processWorkflowClass.workflowClassName","default":""},
+    	{"name":"processId","path":"process.processId","default":0},
+    	{"name":"taskId","path":"task.taskId","default":0},
+		{"name":"taskName","path":"task.taskName","default":""}
     ]
 }
 */
+function getValueByPath( item , path){
+	var arr = path.split(".");
+	var value = item;
+	for ( var i = 0; i < arr.length ; i++){
+		value = value[ arr[i] ];
+	};
+	return value;
+};
+
 formatters['getActivities'] = function ( data , requiredInfo ){
 	var workItems = data.workItems.workItem || new Array(),
 		response = { "workItem" : new Array() };
@@ -31,15 +43,16 @@ formatters['getActivities'] = function ( data , requiredInfo ){
 		if ( newItem.errorMessage.length == 0 ){
 			for ( var k = 0 ; k < requiredInfo.length ; k++ ){
 				//console.log("no error",item);
-				var info = requiredInfo[k];
+				var info = requiredInfo[k]
+				/*
 				var arr = info.path.split(".");
 				//console.log("array",arr);
 				var gg = item;
 				for ( var m = 0 ; m < arr.length ; m++ ){
 					
 					gg = gg[ arr[m] ];
-				}
-				newItem[ info.name ] = gg;
+				}*/
+				newItem[ info.name ] = getValueByPath( item , info.path );
 			};
 		}
 		/*if ( newItem.errorMessage.length == 0 ){
