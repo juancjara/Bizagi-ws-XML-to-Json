@@ -1,6 +1,16 @@
 var formatters = {};
 
+function getValueByPath( item , path){
+	var arr = path.split(".");
+	var value = item;
+	for ( var i = 0; i < arr.length ; i++){
+		value = value[ arr[i] ];
+	};
+	return value;
+};
+
 /*
+Example request
 {
 	"methodName": "getActivities",
     "data": {
@@ -16,15 +26,6 @@ var formatters = {};
     ]
 }
 */
-function getValueByPath( item , path){
-	var arr = path.split(".");
-	var value = item;
-	for ( var i = 0; i < arr.length ; i++){
-		value = value[ arr[i] ];
-	};
-	return value;
-};
-
 formatters['getActivities'] = function ( data , requiredInfo ){
 	var workItems = data.workItems.workItem || new Array(),
 		response = { "workItem" : new Array() };
