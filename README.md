@@ -32,8 +32,112 @@ Este servidor desarrollado en Nodejs permite consumir los servicios web de bizag
 
 Actualmente se tienen mapeados estos servicios web:
   - getActivities
+  
+Request :
+```JSON
+{
+	"methodName": "getActivities",
+	"data": {
+		"BizAgiWSParam": {
+			"userName": "escalarAdmin"
+		}
+	},
+	"requiredInfo": {
+		"dataFields" : [
+			{"name":"processName","path":"process.processWorkflowClass.workflowClassName","default":""},
+			{"name":"processId","path":"process.processId","default":0},
+			{"name":"taskId","path":"task.taskId","default":0},
+			{"name":"taskName","path":"task.taskName","default":""}
+		],
+		"errorFields":{
+			"code":"codigoError",
+			"message": "msgError"
+		}
+	}    
+}
+```
+  
   - createCases
+  
+Request :
+```JSON
+{
+	"methodName": "createCases",
+	"data": {
+		"BizAgiWSParam": {
+			"domain" : "domain",
+			"userName": "escalarAdmin",
+			"Cases" : {
+				"Case" : {
+					"Process" : "WS"
+				}
+			}
+		}
+	},
+	"requiredInfo": {
+		"dataFields" : [
+			{"name":"processName","path":"processWorkflowClass.workflowClassName","default":""},
+			{"name":"processId","path":"processId","default":0},
+			{"name":"taskId","path":"CurrentWorkItems.workItem.task.taskId","default":0},
+			{"name":"taskName","path":"CurrentWorkItems.workItem.task.taskName","default":""}
+		],
+		"errorFields":{
+			"code":"codigoError",
+			"message": "msgError"
+		}
+	}
+}
+```
   - performActivity
+  
+Request:
+```JSON
+{
+	"methodName": "performActivity",
+	"data": {
+		"BizAgiWSParam": {
+			"domain" : "domain",
+			"userName": "escalarAdmin",
+			"ActivityData" : {
+				"idCase": "802",
+				"taskName": "Task1"
+			}
+		}
+	},
+	"requiredInfo": {
+		"dataFields" : [
+			{"name":"processName","path":"processWorkflowClass.workflowClassName","default":""},
+			{"name":"processId","path":"processId","default":0},
+			{"name":"taskId","path":"CurrentWorkItems.workItem.task.taskId","default":0},
+			{"name":"taskName","path":"CurrentWorkItems.workItem.task.taskName","default":""}
+		],
+		"errorFields":{
+			"code":"codigoError",
+			"message": "msgError"
+		}
+	}
+}
+```
   - getEntities
+  
+Request:
+```JSON
+{
+	"methodName": "getEntities",
+	"data": {
+		"BizAgiWSParam": {
+			"EntityData" : {
+				"EntityName" : "Comun",
+				"Filters" : "tipoProceso != '4'"
+			}
+		}
+	},
+	"errorFields":{
+		"code":"codigoError",
+		"message": "msgError"
+	}
+}
+
+```
 
 Contactarme si desean más servicios web mapeados o ayuda sobre cómo usar este servidor
