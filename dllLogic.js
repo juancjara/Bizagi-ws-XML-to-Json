@@ -10,11 +10,11 @@ var WorkFlowBizagi = require('edge').func({
         methodName: 'getEntities' 
     });
 
-exports.consumeWorkFlowBizagi = function ( payload ) {
+exports.consumeWorkFlowBizagi = function ( payload , requiredInfo ) {
 	var response;
 	WorkFlowBizagi( payload , function( error , result ){
 		result = JSON.parse( result );
-		response = formatter.format( payload.methodName , result );
+		response = formatter.format( payload.methodName , result, requiredInfo );
 	});
 	return response;
 };
