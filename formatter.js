@@ -28,8 +28,6 @@ function getValueByPath( item , path){
 formatters['getActivities'] = function ( data , requiredInfo ){
 	var workItems = data.workItems.workItem || new Array(),
 		response = { "workItem" : new Array() };
-	console.log("requiredInfo",requiredInfo);
-
 	for (var i = 0; i < workItems.length; i++) {
 		var item = workItems[i],
 			newItem = {
@@ -42,26 +40,10 @@ formatters['getActivities'] = function ( data , requiredInfo ){
 		}
 		if ( newItem.errorMessage.length == 0 ){
 			for ( var k = 0 ; k < requiredInfo.length ; k++ ){
-				//console.log("no error",item);
 				var info = requiredInfo[k]
-				/*
-				var arr = info.path.split(".");
-				//console.log("array",arr);
-				var gg = item;
-				for ( var m = 0 ; m < arr.length ; m++ ){
-					
-					gg = gg[ arr[m] ];
-				}*/
 				newItem[ info.name ] = getValueByPath( item , info.path );
 			};
 		}
-		/*if ( newItem.errorMessage.length == 0 ){
-			console.log
-			newItem['taskId'] =item.task.taskId;
-			/*newItem['taskName'] = item.task.taskName;
-			newItem['processId']	= item.process.processId;
-			newItem['processName'] = item.process.processWorkflowClass.workflowClassName;
-		};*/
 		response.workItem.push(newItem);
 	};
 	return response;
